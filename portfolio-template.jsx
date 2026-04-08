@@ -605,7 +605,8 @@ export default function Portfolio() {
 
         /* ── Phone breakpoint ── */
         @media (max-width: 600px) {
-          .hero-title { font-size: 36px !important; }
+          .hero-title { font-size: 36px !important; max-width: 100% !important; }
+          .resp-hero > div:nth-child(3) { padding-top: 100px !important; }
           .stat-grid { grid-template-columns: 1fr 1fr !important; }
           .stat-grid > div { padding: 28px 16px !important; }
           .cert-grid { grid-template-columns: 1fr !important; }
@@ -613,7 +614,6 @@ export default function Portfolio() {
           .project-card-grid h3 { font-size: 32px !important; }
           .project-card-grid p { font-size: 14px !important; }
           .resp-contact h2 { font-size: 32px !important; }
-          .hero-title { max-width: 100% !important; }
           .resp-section-heading { font-size: 30px !important; }
           .social-links { flex-wrap: wrap !important; gap: 16px !important; }
         }
