@@ -333,8 +333,8 @@ function CustomCursor() {
   }, []);
   return (
     <>
-      <div ref={dot} style={{ position: "fixed", top: 0, left: 0, width: 8, height: 8, background: "#E8FC73", borderRadius: "50%", pointerEvents: "none", zIndex: 9999, mixBlendMode: "difference" }} />
-      <div ref={ring} style={{
+      <div ref={dot} className="custom-cursor-dot" style={{ position: "fixed", top: 0, left: 0, width: 8, height: 8, background: "#E8FC73", borderRadius: "50%", pointerEvents: "none", zIndex: 9999, mixBlendMode: "difference" }} />
+      <div ref={ring} className="custom-cursor-ring" style={{
         position: "fixed", top: 0, left: 0, width: hovered ? 60 : 40, height: hovered ? 60 : 40,
         border: `1.5px solid ${hovered ? "#E8FC73" : "rgba(232,252,115,0.5)"}`,
         borderRadius: "50%", pointerEvents: "none", zIndex: 9998,
@@ -461,20 +461,20 @@ function EducationItem({ item, index, isLast }) {
   const color = statusColors[item.status];
 
   return (
-    <div ref={ref} style={{
+    <div ref={ref} className="edu-item" style={{
       display: "grid", gridTemplateColumns: "180px 24px 1fr", gap: 40,
       paddingBottom: isLast ? 0 : 60, position: "relative",
       opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)",
       transition: `all 0.8s cubic-bezier(0.33,1,0.68,1) ${index * 0.12}s`,
     }}>
       {/* Date column */}
-      <div style={{ textAlign: "right", paddingTop: 4 }}>
+      <div className="edu-date" style={{ textAlign: "right", paddingTop: 4 }}>
         <div style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#666", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>{item.period}</div>
         {item.gpa && <div style={{ fontFamily: "'Geist Mono', monospace", fontSize: 11, color: color }}>{item.gpa}</div>}
       </div>
 
       {/* Timeline dot + line */}
-      <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+      <div className="edu-line" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
         <div style={{
           width: 14, height: 14, borderRadius: "50%",
           background: item.status === "complete" ? "transparent" : color,
@@ -569,20 +569,53 @@ export default function Portfolio() {
         @keyframes scrollDown { 0% { transform: translateY(-100%); } 50% { transform: translateY(100%); } 100% { transform: translateY(200%); } }
         @keyframes grain { 0%,100%{transform:translate(0,0)} 10%{transform:translate(-5%,-10%)} 30%{transform:translate(7%,-25%)} 50%{transform:translate(-15%,10%)} 70%{transform:translate(0%,15%)} 90%{transform:translate(-10%,10%)} }
         @keyframes heroGlow { 0%,100% { opacity: 0.04; } 50% { opacity: 0.08; } }
+
+        /* ── Touch devices: disable custom cursor ── */
+        @media (hover: none) and (pointer: coarse) {
+          * { cursor: auto !important; }
+          .custom-cursor-dot, .custom-cursor-ring { display: none !important; }
+        }
+
+        /* ── Tablet breakpoint ── */
         @media (max-width: 900px) {
-          .hero-title { font-size: 42px !important; }
-          .stat-grid { grid-template-columns: 1fr 1fr !important; }
-          .about-grid { grid-template-columns: 1fr !important; }
-          .skill-grid { grid-template-columns: 1fr !important; }
+          .hero-title { font-size: 52px !important; }
           .three-hero { display: none !important; }
           .project-card-grid { grid-template-columns: 1fr !important; }
+          .project-card-grid > div:first-child { padding-right: 0 !important; order: 2 !important; }
+          .project-card-grid > div:last-child { order: 1 !important; margin-bottom: 28px !important; }
+          .stat-grid { grid-template-columns: 1fr 1fr !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .skill-grid { grid-template-columns: 1fr !important; }
+          .cert-grid { grid-template-columns: 1fr 1fr !important; }
           .hero-cta-row { flex-direction: column !important; align-items: flex-start !important; }
-          .cert-grid { grid-template-columns: 1fr !important; }
-          .nav-items { gap: 20px !important; }
           .nav-items a { display: none !important; }
-          .edu-item { grid-template-columns: 1fr !important; }
+          .nav-items { gap: 16px !important; }
+          .edu-item { grid-template-columns: 1fr !important; gap: 8px !important; }
           .edu-item .edu-date { text-align: left !important; }
           .edu-item .edu-line { display: none !important; }
+          .resp-nav { padding: 16px 20px !important; }
+          .resp-section { padding-left: 20px !important; padding-right: 20px !important; }
+          .resp-hero { padding: 0 20px !important; }
+          .resp-contact h2 { font-size: 42px !important; }
+          .resp-contact { padding: 80px 20px !important; }
+          .resp-footer { padding: 32px 20px !important; }
+          .resp-section-heading { font-size: 36px !important; }
+          .scroll-indicator { display: none !important; }
+        }
+
+        /* ── Phone breakpoint ── */
+        @media (max-width: 600px) {
+          .hero-title { font-size: 36px !important; }
+          .stat-grid { grid-template-columns: 1fr 1fr !important; }
+          .stat-grid > div { padding: 28px 16px !important; }
+          .cert-grid { grid-template-columns: 1fr !important; }
+          .project-card-grid { padding: 36px 0 !important; }
+          .project-card-grid h3 { font-size: 32px !important; }
+          .project-card-grid p { font-size: 14px !important; }
+          .resp-contact h2 { font-size: 32px !important; }
+          .hero-title { max-width: 100% !important; }
+          .resp-section-heading { font-size: 30px !important; }
+          .social-links { flex-wrap: wrap !important; gap: 16px !important; }
         }
       `}</style>
 
@@ -593,7 +626,7 @@ export default function Portfolio() {
       <div style={{ background: "#0a0a0a", color: "#fff", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", position: "relative" }}>
 
         {/* ═══ NAVBAR ═══ */}
-        <nav style={{
+        <nav className="resp-nav" style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "24px 48px",
           display: "flex", justifyContent: "space-between", alignItems: "center",
           background: scrollY > 100 ? "rgba(10,10,10,0.85)" : "transparent",
@@ -616,7 +649,7 @@ export default function Portfolio() {
         </nav>
 
         {/* ═══ HERO + 3D ═══ */}
-        <section id="home" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 48px", position: "relative", overflow: "hidden" }}>
+        <section id="home" className="resp-hero" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 48px", position: "relative", overflow: "hidden" }}>
 
           <div className="three-hero" style={{ position: "absolute", inset: 0, zIndex: 0 }}>
             <ThreeHero />
@@ -663,7 +696,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <div style={{ position: "absolute", bottom: 48, left: 48, display: "flex", alignItems: "center", gap: 16, opacity: loaded ? 1 : 0, animation: loaded ? "fadeIn 1s ease-out 1.2s both" : "none", zIndex: 2 }}>
+          <div className="scroll-indicator" style={{ position: "absolute", bottom: 48, left: 48, display: "flex", alignItems: "center", gap: 16, opacity: loaded ? 1 : 0, animation: loaded ? "fadeIn 1s ease-out 1.2s both" : "none", zIndex: 2 }}>
             <div style={{ width: 1, height: 60, background: "rgba(255,255,255,0.1)", position: "relative", overflow: "hidden" }}>
               <div style={{ width: "100%", height: "50%", background: "#E8FC73", animation: "scrollDown 2s ease-in-out infinite" }} />
             </div>
@@ -674,7 +707,7 @@ export default function Portfolio() {
         <Marquee />
 
         {/* ═══ STATS ═══ */}
-        <section style={{ padding: "100px 48px" }}>
+        <section className="resp-section" style={{ padding: "100px 48px" }}>
           <div className="stat-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(255,255,255,0.06)", borderRadius: 16, overflow: "hidden" }}>
             {[
               { number: 2, suffix: "", label: "Associate Degrees", decimals: 0 },
@@ -693,10 +726,10 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ WORK / PROJECTS ═══ */}
-        <section id="work" style={{ padding: "60px 48px 120px" }}>
+        <section id="work" className="resp-section" style={{ padding: "60px 48px 120px" }}>
           <div style={{ marginBottom: 80 }}>
             <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#E8FC73", letterSpacing: 3, textTransform: "uppercase" }}>Hands-On Work</span>
-            <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: "#fff", marginTop: 16, lineHeight: 1.05 }}>
+            <h2 className="resp-section-heading" style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: "#fff", marginTop: 16, lineHeight: 1.05 }}>
               Projects &amp; lab<br /><span style={{ fontStyle: "italic", color: "#888" }}>experience.</span>
             </h2>
           </div>
@@ -704,11 +737,11 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ EDUCATION TIMELINE ═══ */}
-        <section id="education" style={{ padding: "120px 48px", borderTop: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
+        <section id="education" className="resp-section" style={{ padding: "120px 48px", borderTop: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
           <div style={{ maxWidth: 1000, margin: "0 auto" }}>
             <div style={{ marginBottom: 80 }}>
               <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#E8FC73", letterSpacing: 3, textTransform: "uppercase" }}>Academic Journey</span>
-              <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: "#fff", marginTop: 16, lineHeight: 1.05 }}>
+              <h2 className="resp-section-heading" style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: "#fff", marginTop: 16, lineHeight: 1.05 }}>
                 A decade of<br /><span style={{ fontStyle: "italic", color: "#888" }}>learning the craft.</span>
               </h2>
             </div>
@@ -722,10 +755,10 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ CERTIFICATIONS ═══ */}
-        <section id="certifications" style={{ padding: "120px 48px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <section id="certifications" className="resp-section" style={{ padding: "120px 48px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div style={{ marginBottom: 60 }}>
             <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#E8FC73", letterSpacing: 3, textTransform: "uppercase" }}>Certifications</span>
-            <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: "#fff", marginTop: 16, lineHeight: 1.05 }}>
+            <h2 className="resp-section-heading" style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: "#fff", marginTop: 16, lineHeight: 1.05 }}>
               Certification<br /><span style={{ fontStyle: "italic", color: "#888" }}>roadmap.</span>
             </h2>
           </div>
@@ -735,7 +768,7 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ ABOUT + SKILLS ═══ */}
-        <section ref={aboutRef} id="about" style={{ padding: "120px 48px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <section ref={aboutRef} id="about" className="resp-section" style={{ padding: "120px 48px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 80 }}>
             <div>
               <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#E8FC73", letterSpacing: 3, textTransform: "uppercase" }}>About</span>
@@ -806,7 +839,7 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ CONTACT ═══ */}
-        <section id="contact" style={{ padding: "140px 48px", textAlign: "center", borderTop: "1px solid rgba(255,255,255,0.06)", position: "relative", overflow: "hidden" }}>
+        <section id="contact" className="resp-contact" style={{ padding: "140px 48px", textAlign: "center", borderTop: "1px solid rgba(255,255,255,0.06)", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(232,252,115,0.04), transparent 70%)", filter: "blur(80px)" }} />
           <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#E8FC73", letterSpacing: 3, textTransform: "uppercase" }}>Get in Touch</span>
           <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 72, fontWeight: 400, color: "#fff", margin: "24px auto 32px", maxWidth: 720, lineHeight: 1.05 }}>
@@ -820,7 +853,7 @@ export default function Portfolio() {
           <div style={{ marginTop: 24, fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#555", letterSpacing: 1 }}>
             (951) 220-3738 &nbsp;·&nbsp; Menifee, CA
           </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 48, position: "relative", zIndex: 10 }}>
+          <div className="social-links" style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 48, position: "relative", zIndex: 10 }}>
             {[
               { name: "GitHub", url: "https://github.com/bramdonthackwell12-blip" },
               { name: "LinkedIn", url: "https://linkedin.com/in/brandon-thackwell" },
@@ -834,7 +867,7 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer style={{ padding: 48, borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+        <footer className="resp-footer" style={{ padding: 48, borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
           <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 11, color: "#333", letterSpacing: 1 }}>© 2026 Brandon Thackwell — Built with care</span>
           <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 11, color: "#333", letterSpacing: 1 }}>Menifee, CA</span>
         </footer>
