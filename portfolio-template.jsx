@@ -19,7 +19,7 @@ const PROJECTS = [
     description: "Built and maintained a virtualized penetration testing environment using Kali Linux and intentionally vulnerable target VMs. Practiced reconnaissance, vulnerability scanning, exploitation, and post-exploitation techniques in an isolated sandbox.",
     tech: ["Kali Linux", "Metasploit", "Nmap", "Wireshark"],
     color: "#E8FC73",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
+    image: "/images/kali-hero.png",
   },
   {
     id: 2,
@@ -777,13 +777,13 @@ export default function Portfolio() {
                 opacity: aboutInView ? 1 : 0, transform: aboutInView ? "translateY(0)" : "translateY(30px)",
                 transition: "all 0.8s cubic-bezier(0.33,1,0.68,1)",
               }}>Offense informs<br /><span style={{ color: "#888", fontStyle: "italic" }}>defense.</span></h2>
-              <div style={{ width: "100%", aspectRatio: "3/4", borderRadius: 16, background: "linear-gradient(135deg,#111,#1a1a1a)", border: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", position: "relative" }}>
-                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 140, color: "rgba(232,252,115,0.04)", fontStyle: "italic" }}>bt</div>
-                <div style={{ position: "absolute", bottom: 24, left: 24, right: 24 }}>
-                  <div style={{ fontFamily: "'Geist Mono', monospace", fontSize: 10, color: "#555", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Based in</div>
+              <div style={{ width: "100%", aspectRatio: "3/4", borderRadius: 16, background: "#111", border: "1px solid rgba(255,255,255,0.05)", overflow: "hidden", position: "relative" }}>
+                <img src="/images/headshot.jpg" alt="Brandon Thackwell" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: "brightness(0.85) saturate(0.9)" }} />
+                <div style={{ position: "absolute", bottom: 24, left: 24, right: 24, zIndex: 2 }}>
+                  <div style={{ fontFamily: "'Geist Mono', monospace", fontSize: 10, color: "#aaa", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Based in</div>
                   <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 24, color: "#fff" }}>Menifee, California</div>
                 </div>
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%", background: "linear-gradient(transparent, rgba(10,10,10,0.9))" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(transparent, rgba(10,10,10,0.95))", zIndex: 1 }} />
               </div>
             </div>
             <div style={{ paddingTop: 60 }}>
