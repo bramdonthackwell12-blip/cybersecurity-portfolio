@@ -405,32 +405,32 @@ function ProjectCard({ project, index }) {
   const wrapperProps = project.url ? { href: project.url, target: "_blank", rel: "noopener noreferrer", style: { textDecoration: "none", display: "block" } } : {};
   return (
     <Wrapper {...wrapperProps}>
-    <div ref={ref} className="hoverable project-card-grid" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "60px 0",
-        opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(60px)",
-        transition: `all 0.9s cubic-bezier(0.33,1,0.68,1) ${index * 0.15}s`, cursor: project.url ? "pointer" : "default",
-      }}>
-      <div style={{ paddingRight: 60 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
-          <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: project.color, letterSpacing: 2, textTransform: "uppercase" }}>{project.category}</span>
-          <span style={{ width: 40, height: 1, background: "rgba(255,255,255,0.15)" }} />
-          <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#555" }}>{project.year}</span>
+      <div ref={ref} className="hoverable project-card-grid" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+        style={{
+          display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "60px 0",
+          opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(60px)",
+          transition: `all 0.9s cubic-bezier(0.33,1,0.68,1) ${index * 0.15}s`, cursor: project.url ? "pointer" : "default",
+        }}>
+        <div style={{ paddingRight: 60 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
+            <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: project.color, letterSpacing: 2, textTransform: "uppercase" }}>{project.category}</span>
+            <span style={{ width: 40, height: 1, background: "rgba(255,255,255,0.15)" }} />
+            <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#555" }}>{project.year}</span>
+          </div>
+          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: hovered ? project.color : "#fff", margin: "0 0 20px", lineHeight: 1.05, transition: "color 0.4s" }}>{project.title}</h3>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: "#888", lineHeight: 1.7, margin: "0 0 32px", maxWidth: 440 }}>{project.description}</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {project.tech.map(t => <span key={t} style={{ fontFamily: "'Geist Mono', monospace", fontSize: 11, color: "#666", border: "1px solid rgba(255,255,255,0.08)", padding: "6px 14px", borderRadius: 100, letterSpacing: 0.5 }}>{t}</span>)}
+          </div>
         </div>
-        <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 56, fontWeight: 400, color: hovered ? project.color : "#fff", margin: "0 0 20px", lineHeight: 1.05, transition: "color 0.4s" }}>{project.title}</h3>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: "#888", lineHeight: 1.7, margin: "0 0 32px", maxWidth: 440 }}>{project.description}</p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {project.tech.map(t => <span key={t} style={{ fontFamily: "'Geist Mono', monospace", fontSize: 11, color: "#666", border: "1px solid rgba(255,255,255,0.08)", padding: "6px 14px", borderRadius: 100, letterSpacing: 0.5 }}>{t}</span>)}
+        <div style={{ position: "relative", overflow: "hidden", borderRadius: 12, aspectRatio: "16/10", background: "#111" }}>
+          <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", transform: hovered ? "scale(1.05)" : "scale(1)", transition: "transform 0.8s cubic-bezier(0.33,1,0.68,1)", filter: "brightness(0.55) saturate(1.2) hue-rotate(-10deg)" }} />
+          <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, ${project.color}20, transparent)` }} />
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: hovered ? 1 : 0, transition: "opacity 0.4s" }}>
+            <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 13, color: "#fff", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(10px)", padding: "12px 28px", borderRadius: 100, letterSpacing: 2, textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.15)" }}>{project.url ? "View on GitHub →" : "View Case Study →"}</span>
+          </div>
         </div>
       </div>
-      <div style={{ position: "relative", overflow: "hidden", borderRadius: 12, aspectRatio: "16/10", background: "#111" }}>
-        <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", transform: hovered ? "scale(1.05)" : "scale(1)", transition: "transform 0.8s cubic-bezier(0.33,1,0.68,1)", filter: "brightness(0.55) saturate(1.2) hue-rotate(-10deg)" }} />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, ${project.color}20, transparent)` }} />
-        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: hovered ? 1 : 0, transition: "opacity 0.4s" }}>
-          <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: 13, color: "#fff", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(10px)", padding: "12px 28px", borderRadius: 100, letterSpacing: 2, textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.15)" }}>{project.url ? "View on GitHub →" : "View Case Study →"}</span>
-        </div>
-      </div>
-    </div>
     </Wrapper>
   );
 }
@@ -856,7 +856,7 @@ export default function Portfolio() {
           <div className="social-links" style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 48, position: "relative", zIndex: 10 }}>
             {[
               { name: "GitHub", url: "https://github.com/bramdonthackwell12-blip" },
-              { name: "LinkedIn", url: "https://linkedin.com/in/brandon-thackwell" },
+              { name: "LinkedIn", url: "https://www.linkedin.com/in/brandon-thackwell-113773324/" },
               { name: "TryHackMe", url: "https://tryhackme.com/p/brandont" },
               { name: "HackTheBox", url: "https://app.hackthebox.com/profile/brandont" },
             ].map(s => (
