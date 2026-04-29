@@ -8,7 +8,7 @@ import * as THREE from "three";
 
 // ★ PASTE YOUR GOOGLE DRIVE RESUME LINK HERE ★
 // Make sure the file sharing is set to "Anyone with the link can view"
-const RESUME_URL = "https://docs.google.com/document/d/1jrKskScBsRBkqDs7lk0oBXlua64vVZXE/preview";
+const RESUME_URL = "https://docs.google.com/document/d/1xNaleHzdWYaDJVfQvdHR80WI4LOj0fFdmmov7OEVT0Q/preview?tab=t.0";
 
 const PROJECTS = [
   {
