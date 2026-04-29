@@ -858,8 +858,8 @@ export default function Portfolio() {
             {[
               { name: "GitHub", url: "https://github.com/bramdonthackwell12-blip" },
               { name: "LinkedIn", url: "https://www.linkedin.com/in/brandon-thackwell-113773324/" },
-              { name: "TryHackMe", url: "https://tryhackme.com/p/brandont" },
-              { name: "HackTheBox", url: "https://app.hackthebox.com/profile/brandont" },
+              { name: "TryHackMe", url: "https://tryhackme.com/p/bramdon.thackwell12" },
+              { name: "HackTheBox", url: "https://profile.hackthebox.com/profile/019dd768-32f8-73b6-bc9b-2f7877283b6f" },
             ].map(s => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="hoverable" style={{ fontFamily: "'Geist Mono', monospace", fontSize: 12, color: "#444", textDecoration: "none", letterSpacing: 1, transition: "color 0.3s", position: "relative", zIndex: 10 }}
                 onMouseEnter={e => e.target.style.color = "#E8FC73"} onMouseLeave={e => e.target.style.color = "#444"}>{s.name}</a>
