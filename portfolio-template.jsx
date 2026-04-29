@@ -20,6 +20,7 @@ const PROJECTS = [
     tech: ["Kali Linux", "Metasploit", "Nmap", "Wireshark"],
     color: "#E8FC73",
     image: "/images/kali-hero.png",
+    url: "https://github.com/bramdonthackwell12-blip/home-pentest-lab",
   },
   {
     id: 2,
